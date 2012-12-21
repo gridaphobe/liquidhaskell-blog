@@ -387,7 +387,7 @@ task :generate_liquid do
     # baseFile   = File.basename(file)
     # targetFile = baseFile.gsub('.lhs', '.markdown')
     # target     = "#{source_dir}/#{posts_dir}/" + targetFile
-    target = "#{source_dir}/#{posts_dir}/" + File.basename(file)
+    target = "#{source_dir}/#{posts_dir}/" + File.basename(file) + ".markdown"
     puts   "## Generating " + target + " from #{file} \n"
     system("liquid #{file} > /dev/null 2>&1")
     cp_r "#{file}"+".markdown", target
@@ -398,7 +398,7 @@ end
 desc "Deploy website via scp"
 task :scp do
   puts "## Deploying website via scp"
-  ok_failed system("scp #{public_dir}/ #{ssh_user}:#{document_root}")
+  ok_failed system("scp -r #{public_dir}/ #{ssh_user}:#{document_root}")
 end
 
 
