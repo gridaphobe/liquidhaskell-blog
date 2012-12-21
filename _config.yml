@@ -2,12 +2,13 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://yoursite.com
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
+url: http://goto.ucsd.edu/~rjhala/liquidhaskell
+title: LiquidHaskell 
+subtitle: Refinement Types For Haskell
+author: UCSD-PL 
 simple_search: http://google.com/search
 description:
+lhsdir: /home/rjhala/research/liquidhaskell/blog/
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in

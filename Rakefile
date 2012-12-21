@@ -26,7 +26,7 @@ themes_dir      = ".themes"   # directory for blog files
 new_post_ext    = "markdown"  # default new post file extension when using the new_post task
 new_page_ext    = "markdown"  # default new page file extension when using the new_page task
 server_port     = "4000"      # port for preview server eg. localhost:4000
-
+lhs_dir         = "/home/rjhala/research/liquidhaskell/blog" #location of .lhs files
 
 desc "Initial setup for Octopress: copies the default theme into the path of Jekyll's generator. Rake install defaults to rake install[classic] to install a different theme run rake install[some_theme_name]"
 task :install, :theme do |t, args|
@@ -378,3 +378,20 @@ task :list do
   puts "Tasks: #{(Rake::Task.tasks - [Rake::Task[:list]]).join(', ')}"
   puts "(type rake -T for more detail)\n\n"
 end
+
+
+desc "generate .markdown from .lhs posts"
+task :generate_liquid do 
+  rm_rf ["#{source_dir}/#{posts_dir}/**.lhs.markdown"]
+  FileList["#{lhs_dir}/*.lhs"].each do |file|
+    # baseFile   = File.basename(file)
+    # targetFile = baseFile.gsub('.lhs', '.markdown')
+    # target     = "#{source_dir}/#{posts_dir}/" + targetFile
+    target = "#{source_dir}/#{posts_dir}/" + File.basename(file)
+    puts   "## Generating " + target + " from #{file} \n"
+    system("liquid #{file} > /dev/null 2>&1")
+    cp_r "#{file}"+".markdown", target
+  end
+  Rake::Task[:generate].execute
+end
+

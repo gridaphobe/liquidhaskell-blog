@@ -1,3 +1,19 @@
+## What is liquidhaskell-blog?
+
+A fork and minor modification of Octopress, used to generate blog articles
+illustrating [liquidhaskell](https://github.com/ucsd-progsys/liquidhaskell)
+
+## Installation and Use
+
+1. Follow the basic Octopress docs for basic setup.
+2. Update the variable `lhs_dir` in the Rakefile to point to the list of
+   `.lhs` (literate haskell) files that you want to populate the blog.
+3. Run `rake generate_liquid`
+
+You can have other files in `_source/posts/` -- just make sure they don't
+have the suffix `.lhs.markdown` as those are wiped at each invocation of
+`generate_liquid`.
+
 ## What is Octopress?
 
 Octopress is [Jekyll](https://github.com/mojombo/jekyll) blogging at its finest.
