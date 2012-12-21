@@ -379,10 +379,13 @@ task :list do
   puts "(type rake -T for more detail)\n\n"
 end
 
+desc "generate .markdown from .lhs posts"
+task :clean_liquid do 
+  rm_rf ["#{source_dir}/#{posts_dir}/*.lhs.markdown"]
+end
 
 desc "generate .markdown from .lhs posts"
 task :generate_liquid do 
-  rm_rf ["#{source_dir}/#{posts_dir}/**.lhs.markdown"]
   FileList["#{lhs_dir}/*.lhs"].each do |file|
     # baseFile   = File.basename(file)
     # targetFile = baseFile.gsub('.lhs', '.markdown')
