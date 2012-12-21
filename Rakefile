@@ -4,9 +4,9 @@ require "stringex"
 
 ## -- Rsync Deploy config -- ##
 # Be sure your public key is listed in your server's ~/.ssh/authorized_keys file
-ssh_user       = "user@domain.com"
+ssh_user       = "rjhala@goto.ucsd.edu"
 ssh_port       = "22"
-document_root  = "~/website.com/"
+document_root  = "~/public_html/liquidhaskell/blog"
 rsync_delete   = false
 rsync_args     = ""  # Any extra arguments to pass to rsync
 deploy_default = "rsync"
@@ -26,7 +26,7 @@ themes_dir      = ".themes"   # directory for blog files
 new_post_ext    = "markdown"  # default new post file extension when using the new_post task
 new_page_ext    = "markdown"  # default new page file extension when using the new_page task
 server_port     = "4000"      # port for preview server eg. localhost:4000
-lhs_dir         = "/home/rjhala/research/liquidhaskell/blog" #location of .lhs files
+lhs_dir         = "/home/rjhala/research/liquidhaskell/blog" #location of .lhs files to populate _source/posts
 
 desc "Initial setup for Octopress: copies the default theme into the path of Jekyll's generator. Rake install defaults to rake install[classic] to install a different theme run rake install[some_theme_name]"
 task :install, :theme do |t, args|
@@ -394,4 +394,11 @@ task :generate_liquid do
   end
   Rake::Task[:generate].execute
 end
+
+desc "Deploy website via scp"
+task :scp do
+  puts "## Deploying website via scp"
+  ok_failed system("scp #{public_dir}/ #{ssh_user}:#{document_root}")
+end
+
 

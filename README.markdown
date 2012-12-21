@@ -6,13 +6,16 @@ illustrating [liquidhaskell](https://github.com/ucsd-progsys/liquidhaskell)
 ## Installation and Use
 
 1. Follow the basic Octopress docs for basic setup.
-2. Update the variable `lhs_dir` in the Rakefile to point to the list of
-   `.lhs` (literate haskell) files that you want to populate the blog.
-3. Run `rake generate_liquid`
 
-You can have other files in `_source/posts/` -- just make sure they don't
-have the suffix `.lhs.markdown` as those are wiped at each invocation of
-`generate_liquid`.
+2. Update the Rakefile variables `lhs_dir`, `ssh_user`, `document_root`
+
+3. Populate the  `source/_posts` directory with the usual .markdown files. 
+   Make sure they don't have the suffix `.lhs.markdown` as those are deleted 
+   at each invocation of `generate_liquid`.
+
+4. Run `rake generate_liquid`
+
+5. Deploy as usual or with `rake scp`
 
 ## What is Octopress?
 
