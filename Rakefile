@@ -6,7 +6,7 @@ require "stringex"
 # Be sure your public key is listed in your server's ~/.ssh/authorized_keys file
 ssh_user       = "rjhala@goto.ucsd.edu"
 ssh_port       = "22"
-document_root  = "~/public_html/liquidhaskell/blog"
+document_root  = "~rjhala/liquidhaskell/blog"
 rsync_delete   = false  # NEVER EVER CHANGE THIS! 
 rsync_args     = ""  # Any extra arguments to pass to rsync
 deploy_default = "rsync"

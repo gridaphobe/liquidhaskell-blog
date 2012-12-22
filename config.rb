@@ -2,10 +2,10 @@
 project_type = :stand_alone
 
 # Publishing paths
-http_path = "/~/public_html/liquidhaskell/blog/"
-http_images_path = "/~/public_html/liquidhaskell/blog/images"
-http_fonts_path = "/~/public_html/liquidhaskell/blog/fonts"
-css_dir = "public/~/public_html/liquidhaskell/blog/stylesheets"
+http_path = "~rjhala/liquidhaskell/blog"
+http_images_path = "~rjhala/liquidhaskell/blog/images"
+http_fonts_path = "~rjhala/liquidhaskell/blog/fonts"
+css_dir = "public/~rjhala/liquidhaskell/blog/stylesheets"
 
 # Local development paths
 sass_dir = "sass"
