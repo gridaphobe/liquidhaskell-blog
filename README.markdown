@@ -17,6 +17,9 @@ illustrating [liquidhaskell](https://github.com/ucsd-progsys/liquidhaskell)
 
 5. Deploy as usual or with `rake scp`
 
+The subdirectory path thing is a mess, see 
+[this](http://octopress.org/docs/deploying/subdir/) for details
+
 ## What is Octopress?
 
 Octopress is [Jekyll](https://github.com/mojombo/jekyll) blogging at its finest.

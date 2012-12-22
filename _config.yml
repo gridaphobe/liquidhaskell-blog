@@ -17,7 +17,7 @@ lhsdir: /home/rjhala/research/liquidhaskell/blog/
 date_format: "ordinal"
 
 # RSS / Email (optional) subscription links (change if using something like Feedburner)
-subscribe_rss: ~rjhala/liquidhaskell/blog/atom.xml
+subscribe_rss: /~rjhala/liquidhaskell/blog/atom.xml
 subscribe_email:
 # RSS feeds can list your email address if you like
 email: jhala@cs.ucsd.edu
@@ -27,7 +27,7 @@ email: jhala@cs.ucsd.edu
 # ----------------------- #
 
 # If publishing to a subdirectory as in http://site.com/project set 'root: /project'
-root: ~rjhala/liquidhaskell/blog
+root: /~rjhala/liquidhaskell/blog
 permalink: /blog/:year/:month/:day/:title/
 source: source
 destination: public/~rjhala/liquidhaskell/blog
