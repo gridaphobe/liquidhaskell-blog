@@ -10,6 +10,7 @@ author: Ranjit Jhala
 
 LiquidHaskell is a static verifier for Haskell, based on **Liquid Types**
 
+
 Code
 ----
 
@@ -20,7 +21,7 @@ Papers
 
 To learn about the theory behind LiquidHaskell, I recommend reading first the 
 PLDI 2008 paper and then the ESOP 2013 paper. Alternatively, one lazy weekend, 
-you could read [Pat Rondon's Ph.D Dissertation](http://goto.ucsd.edu/~pmr/papers/rondon-liquid-types.pdf)
+you could curl up with [Pat Rondon's Ph.D Dissertation](http://goto.ucsd.edu/~pmr/papers/rondon-liquid-types.pdf)
 
 #### ML
 
