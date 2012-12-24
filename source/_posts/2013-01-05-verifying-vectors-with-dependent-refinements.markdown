@@ -21,6 +21,16 @@ more easy examples that
 
 <!-- more -->
 
+\begin{code}
+module DependentRefinements (
+    safeLookup , unsafeLookup
+  , absoluteSum, absoluteSum'
+  , dotProduct
+  ) where
+
+import Data.Vector 
+\end{code}
+
 Bounds for Vectors
 ------------------
 
@@ -127,15 +137,14 @@ To this end, LiquidHaskell supports *predicate aliases*, which,
 (like everything else!) are best illustrated by example
 
 \begin{code}
-{-@ predicate Lt x y      = x < y                         @-}
-{-@ predicate Ge x y      = not (Lt x y)                  @-}
-{-@ predicate InBound i a = ((Ge i 0) && (Lt i (vlen a))) @-}
+{-@ predicate Btwn lo i hi = ((lo <= i) && (i < hi)) @-}
+{-@ predicate InBounds i a = (Btwn 0 i (vlen a))     @-}
 \end{code}
 
 Now, we can simplify (the type for) the unsafe lookup function to
 
 \begin{code}
-{-@ unsafeLookup' :: vec:Vector a -> {v: Int | (InBound v vec)} -> a @-}
+{-@ unsafeLookup' :: vec:Vector a -> {v: Int | (InBounds v vec)} -> a @-}
 unsafeLookup' vec i = vec ! i
 \end{code}
 
@@ -214,8 +223,97 @@ non-negative.
 Bottling Recursion With a Higher-Order `loop`
 ---------------------------------------------
 
-- loop           // recursion + HOF 
-- dotProduct     // uses loop use HOF
+Next, lets refactor the above low-level recursive function into a generic
+higher-order `loop`.
+
+\begin{code}
+{-@ loop :: @-}
+loop :: Int -> Int -> a -> (Int -> a -> a) -> a 
+loop lo hi base f = go base lo
+  where
+    go acc i     
+      | i /= n    = go (f i acc) (i + 1)
+      | otherwise = acc
+\end{code}
+
+### Using `loop` to compute `absoluteSum`
+
+We can now use `loop` to implement `absoluteSum` like so:
+
+\begin{code}
+absoluteSum' vec = if 0 < n then loop 0 n 0 body else 0
+  where body     = \i acc -> acc + (vec ! i)
+        n        = length vec
+\end{code}
+
+LiquidHaskell verifies `absoluteSum'` without any trouble.
+
+It is very instructive to see the type that LiquidHaskell *infers* 
+for `loop` -- it looks something like
+
+\begin{code}
+{-@ loop :: lo: {v: Int | (0 <= v) }  
+         -> hi: {v: Int | ((0 <= v) && (lo <= v))} 
+         -> a 
+         -> (i: {v: Int | (Btwn lo v hi)} -> a -> a)
+         -> a 
+  @-}
+\end{code}
+
+In english, the above type states that 
+
+- `lo` the loop *lower* bound is a non-negative integer
+- `hi` the loop *upper* bound is a greater than `lo`,
+- `f`  the loop *body* is only called with integers between `lo` and `hi`.
+
+Inference is a rather convenient option -- it can be tedious to have to keep 
+typing things like the above! Of course, if we wanted to make `loop` a
+public or exported function, we could use the inferred type to write (or
+generate) an explicit signature too.
+
+At the call 
+
+```haskell
+loop 0 n 0 body 
+```
+
+the parameters `lo` and `hi` are instantiated with `0` and `n` respectively
+(which, by the way is where the inference engine deduces non-negativity
+from) and thus LiquidHaskell concludes that `body` is only called with
+values of `i` that are *between* `0` and `(vlen vec)`, which shows the 
+safety of the call `vec ! i`.
+
+### Using `loop` to compute `dotProduct`
+
+Here's another use of `loop` -- this time to compute the `dotProduct` 
+of two vectors. 
+
+\begin{code}
+dotProduct     :: Vector Int -> Vector Int -> Int
+dotProduct x y = loop 0 (vlen x) 0 (\i -> (+ (x ! i) * (y ! i))) 
+\end{code}
+
+The gimlet-eyed reader will realize that the above is quite unsafe -- what
+if `x` is a 10-dimensional vector while `y` has only 3-dimensions? A nasty:
+
+```haskell
+*** Exception: ./Data/Vector/Generic.hs:244 ((!)): index out of bounds ...
+```
+
+Yech. Precisely the sort of nastiness we want to banish at compile-time.
+
+Refinements to the rescue! We can specify that the vectors have the same 
+dimensions quite easily
+
+\begin{code}
+{-@ dotProduct :: x:(Vector Int) 
+               -> y:{v: (Vector Int) | (vlen v) = (vlen x)} 
+               -> Int 
+  @-}
+\end{code}
+
+after which LiquidHaskell will gladly verify that the implementation of
+`dotProduct` is indeed safe!
 
 
 Refining Data Types
@@ -229,5 +327,8 @@ Refinements and Polymorphism
 
 - Vector-Abs-Sum // uses range + MAP
 - argmin         // uses range + map and fold
+
+
+
 
 [ref101]: /blog/2012/12/20/refinement-types-101.lhs/ "Refinement Types 101"
