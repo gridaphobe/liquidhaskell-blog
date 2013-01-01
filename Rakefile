@@ -386,22 +386,25 @@ end
 
 desc "generate .markdown from .lhs posts"
 task :generate_liquid do 
-  FileList["#{lhs_dir}/*.lhs"].each do |file|
-    # baseFile   = File.basename(file)
-    # targetFile = baseFile.gsub('.lhs', '.markdown')
-    # target     = "#{source_dir}/#{posts_dir}/" + targetFile
-    target = "#{source_dir}/#{posts_dir}/" + File.basename(file) + ".markdown"
-    puts   "## Generating " + target + " from #{file} \n"
-    system("liquid #{file} > /dev/null 2>&1")
-    cp_r "#{file}"+".markdown", target
+  FileList["#{lhs_dir}/*.lhs"].each do |filename|
+    Rake::Task[:generate_liquid_one].execute({:file => filename}) 
   end
   Rake::Task[:generate].execute
 end
 
-desc "Deploy website via scp"
-task :scp do
-  puts "## Deploying website via scp"
-  ok_failed system("scp -r #{public_dir}/ #{ssh_user}:#{document_root}")
+desc "Re-generate a single blog article from .lhs"
+task :generate_liquid_one, :file do |t, args|
+  file   = args[:file]
+  target = "#{source_dir}/#{posts_dir}/" + File.basename(file) + ".markdown"
+  mdfile = "#{file}"+".markdown" 
+  rm mdfile 
+  puts "## Converting: #{file}"
+  system "liquid #{file} > /dev/null 2>&1"
+  if File.exist?(mdfile) 
+    cp_r mdfile, target
+  else 
+    puts "## WARNING: liquid fails on #{file}"
+  end
 end
-
+  
 

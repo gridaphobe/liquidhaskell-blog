@@ -10,11 +10,15 @@ author: Ranjit Jhala
 
 LiquidHaskell is a static verifier for Haskell, based on **Liquid Types**
 
-
 Code
 ----
 
 You can get LiquidHaskell [here](http://github.com/ucsd-progsys/liquidhaskell)
+See the [README](https://github.com/ucsd-progsys/liquidhaskell/blob/master/README.md)
+for installation instructions. LiquidHaskell is a research project that is
+still rough around the edges; error reporting is a *especially* limited.
+Feedback, suggestions for improvement, or better yet, patches and additions 
+are *extremely* welcome.
 
 Papers
 ------
