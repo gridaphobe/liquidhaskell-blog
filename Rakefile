@@ -396,8 +396,10 @@ desc "Re-generate a single blog article from .lhs"
 task :generate_liquid_one, :file do |t, args|
   file   = args[:file]
   target = "#{source_dir}/#{posts_dir}/" + File.basename(file) + ".markdown"
-  mdfile = "#{file}"+".markdown" 
-  rm mdfile 
+  mdfile = "#{file}" + ".markdown" 
+  if File.exist?(mdfile) 
+    rm mdfile 
+  end
   puts "## Converting: #{file}"
   system "liquid #{file} > /dev/null 2>&1"
   if File.exist?(mdfile) 
