@@ -8,6 +8,8 @@ illustrating [liquidhaskell](https://github.com/ucsd-progsys/liquidhaskell)
 1. Follow the basic Octopress docs for basic setup.
 
 2. Update the Rakefile variables `lhs_dir`, `ssh_user`, `document_root`
+   Make sure you have the right URLs in `_config.yml`, `config.rb` and `Rakefile`
+   [See this](http://octopress.org/docs/deploying/subdir/)
 
 3. Populate the  `source/_posts` directory with the usual .markdown files. 
    Make sure they don't have the suffix `.lhs.markdown` as those are deleted 
