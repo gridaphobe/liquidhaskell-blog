@@ -1,7 +1,6 @@
 ---
 layout: page
 title: About
-date: 2012-12-21 19:01
 comments: false 
 sharing: true
 footer: true
@@ -15,15 +14,20 @@ Code
 
 You can get LiquidHaskell [here](http://github.com/ucsd-progsys/liquidhaskell)
 See the [README](https://github.com/ucsd-progsys/liquidhaskell/blob/master/README.md)
-for installation instructions. LiquidHaskell is a research project that is
-still rough around the edges; error reporting is a *especially* limited.
-Feedback, suggestions for improvement, or better yet, patches and additions 
+for installation instructions. LiquidHaskell is an active research project that is
+still rough around the edges. In particular
+
+- A modest subset of the language is currently supported (monads coming soon ...)
+
+- Error reporting is *rather* primitive
+
+Constructive Feedback, or better yet, patches, additions and pull requests 
 are *extremely* welcome.
 
 Papers
 ------
 
-To learn about the theory behind LiquidHaskell, I recommend reading first the 
+To learn about the theory behind Liquid Types, I recommend reading first the 
 PLDI 2008 paper and then the ESOP 2013 paper. Alternatively, one lazy weekend, 
 you could curl up with [Pat Rondon's Ph.D Dissertation](http://goto.ucsd.edu/~pmr/papers/rondon-liquid-types.pdf)
 
@@ -67,5 +71,8 @@ Liquid Types have been developed in the UCSD Programming Systems group by
 Thanks
 ------
 
-The work is funded by NSF grants CCF-0644361, CNS-0720802, CCF-0702603, and generous gifts from Microsoft Research.
+This work is funded by NSF grants CCF-0644361, CNS-0720802, CCF-0702603, and generous gifts from Microsoft Research.
+
+
+
 

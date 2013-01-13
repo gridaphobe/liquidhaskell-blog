@@ -6,7 +6,7 @@ require "stringex"
 # Be sure your public key is listed in your server's ~/.ssh/authorized_keys file
 ssh_user       = "rjhala@goto.ucsd.edu"
 ssh_port       = "22"
-document_root  = "~rjhala/liquidhaskell/blog"
+document_root  = "~rjhala/public_html/liquid/haskell/blog"
 rsync_delete   = false  # NEVER EVER CHANGE THIS! 
 rsync_args     = ""  # Any extra arguments to pass to rsync
 deploy_default = "rsync"
@@ -16,7 +16,7 @@ deploy_branch  = "gh-pages"
 
 ## -- Misc Configs -- ##
 
-public_dir      = "public/~rjhala/liquidhaskell/blog"    # compiled site directory
+public_dir      = "public/~rjhala/liquid/haskell/blog"    # compiled site directory
 source_dir      = "source"    # source file directory
 blog_index_dir  = 'source'    # directory for your blog's index page (if you put your index in source/blog/index.html, set this to 'source/blog')
 deploy_dir      = "_deploy"   # deploy directory (for Github pages deployment)
