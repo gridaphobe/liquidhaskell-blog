@@ -38,6 +38,7 @@ function addSidebarToggler() {
   if (sections.length >= 3){ $('aside.sidebar').addClass('thirds'); }
 }
 
+
 function testFeatures() {
   var features = ['maskImage'];
   $(features).map(function(feature) {
