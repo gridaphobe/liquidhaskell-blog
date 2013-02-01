@@ -40,11 +40,15 @@ single: true
   </footer>
 </article>
 {% unless page.sidebar == false %}
-<aside class="sidebar-nav span3">
+<aside id="fullSidebar" class="sidebar-nav span3">
+  <a id="hideSidebar" href="#"><i class="icon-chevron-right"></i></a>
   {% if site.post_asides.size %}
     {% include_array post_asides %}
   {% else %}
     {% include_array default_asides %}
   {% endif %}
+</aside>
+<aside id="miniSidebar" class="sidebar-nav span1">
+  <a id="showSidebar" href="#"><i class="icon-chevron-left"></i></a>
 </aside>
 {% endunless %}

@@ -13,6 +13,42 @@ function getNav() {
   });
 }
 
+
+function addToggler() {
+  $('#miniSidebar').hide();
+  
+  $('#hideSidebar').click(function(){
+    $('#fullSidebar').fadeOut('slow');
+    $('#miniSidebar').show(); //fadeIn('slow');
+    $('article').removeClass('span9');
+    $('article').addClass('span11 no-sidebar');
+  });
+
+  $('#showSidebar').click(function(){
+    $('#fullSidebar').fadeIn('slow');
+    $('#miniSidebar').fadeOut('slow');
+    $('article').removeClass('span11 no-sidebar');
+    $('article').addClass('span9');
+  });
+}
+
+
+
+    // $('aside').hide();
+    // $('article').append('<span class="toggle-sidebar"></span>');
+    // $('.toggle-sidebar').bind('click', function(e) {
+    //   e.preventDefault();
+    //   if ($('body').hasClass('collapse-sidebar')) {
+    //     $('body').removeClass('collapse-sidebar');
+    //     $('article').removeClass('span9');
+    //     $('article').addClass('span12 no-sidebar');
+    //   } else {
+    //     $('body').addClass('collapse-sidebar');
+    //     $('article').addClass('span9');
+    //     $('article').removeClass('span12 no-sidebar');
+    //   }
+    // });
+
 function addSidebarToggler() {
   if(!$('body').hasClass('sidebar-footer')) {
     $('#content').append('<span class="toggle-sidebar"></span>');
@@ -37,6 +73,8 @@ function addSidebarToggler() {
   }
   if (sections.length >= 3){ $('aside.sidebar').addClass('thirds'); }
 }
+
+
 
 function testFeatures() {
   var features = ['maskImage'];
@@ -122,7 +160,9 @@ $(document).ready(function() {
   flashVideoFallback();
   addCodeLineNumbers();
   getNav();
-  addSidebarToggler();
+  addToggler();
+  //addSidebarToggler();
+
 });
 
 // iOS scaling bug fix
