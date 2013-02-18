@@ -8,7 +8,7 @@ subtitle: Refinement Types via SMT and Predicate Abstraction
 author: UCSD-PL 
 simple_search: http://google.com/search
 description:
-lhsdir: /home/rjhala/research/liquid/haskell/blog/
+lhsdir: /home/rjhala/research/liquid/liquidhaskell/blog/
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
