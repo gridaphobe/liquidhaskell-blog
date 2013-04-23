@@ -17,12 +17,19 @@ See the [README](https://github.com/ucsd-progsys/liquidhaskell/blob/master/READM
 for installation instructions. LiquidHaskell is an active research project that is
 still rough around the edges. In particular
 
-- A modest subset of the language is currently supported (monads coming soon ...)
+- A modest subset of the language is currently supported (monads recently
+  included!...)
 
 - Error reporting is *rather* primitive
 
 Constructive Feedback, or better yet, patches, additions and pull requests 
 are *extremely* welcome.
+
+Mailing List
+------------
+
+If you have questions or comments, please send mail to the [users mailing list](https://groups.google.com/forum/#!forum/liquidhaskell)
+
 
 Papers
 ------
