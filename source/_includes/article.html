@@ -5,7 +5,8 @@
     {% else %}
       <h1 class="entry-title">{% if site.titlecase %}{{ page.title | titlecase }}{% else %}{{ page.title }}{% endif %}</h1>
       {% if page.demo %}
-      <h2><a href="{{ root_url }}/../demo/#?demo={{ page.demo }}">Click to demo</a></h2>
+      <!-- <h2><a href="{{ root_url }}/../demo/#?demo={{ page.demo }}">Click to demo</a></h2> -->
+      <h2><a href="http://goto.ucsd.edu:8090/index.html#?demo={{ page.demo }}">Click to demo</a></h2>
       {% endif %}
 
     {% endif %}
